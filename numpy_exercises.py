@@ -52,3 +52,44 @@ def checkboard(n):
                [ 1.,  0.,  1.,  0.,  1.]])
     """
     # Your code here
+
+    
+    try:
+        n = int(n) # converting to integer for safety
+
+    # if it's not an integer, flag an error
+    except (ValueError, Exception):
+        print(f'Oops! Either value "{n}" can\'t be converted to an integer or we have a bigger problem')
+        
+        return
+
+
+    # let's create the array we'll modify. It'll be a "zeros" array
+    the_array = np.zeros((n, n))
+
+    # now we'll loop through how many rows/columns the array has
+    for x in range(n):
+
+        # we'll access the array row by row:
+        # if the row is an odd one (e.g: row 1, 3, 5, 7), replace every value in the row with a "1"
+        if x % 2 == 1:
+            
+            the_array[x, :] = np.ones(n) # here we replace all values in the row with "1" if it's an odd one
+
+            the_array[x, ::2] = 0 # then we replace every column 2 columns in that row with a "0"
+
+        # if the row is an even one, replace every 2 columns with a "1", directly
+
+        elif x % 2 == 0:
+
+            the_array[x, ::2] = 1
+
+        # else just get out of this function
+        else:
+
+            return
+
+    # print the modified array
+    print(the_array)
+
+    
